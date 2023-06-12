@@ -47,7 +47,10 @@ namespace WebAaddressbookTests
             Login(new AccountData ("admin", "secret"));
             GoToGroupsPage();
             InitNewGroupCreation();
-            FillGroupForm (new GroupData ("aaa"));
+            GroupData group = new GroupData("aaa");
+            group.Header = "bbb";
+            group.Footer = "ccc";
+            FillGroupForm (group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
         }
