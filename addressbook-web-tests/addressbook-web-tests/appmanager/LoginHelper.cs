@@ -16,7 +16,7 @@ namespace WebAddressbookTests
     {
         
 
-        public LoginHelper(IWebDriver driver) : base(driver)
+        public LoginHelper(ApplicationManager manager) : base(manager)
         {
             
         }
