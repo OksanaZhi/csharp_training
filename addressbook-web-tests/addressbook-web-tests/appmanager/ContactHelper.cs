@@ -14,8 +14,7 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
-        private bool acceptNextAlert;
-
+        
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
             
@@ -135,7 +134,7 @@ namespace WebAddressbookTests
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            
             return this;
         }
 
@@ -143,6 +142,7 @@ namespace WebAddressbookTests
         {
 
             driver.SwitchTo().Alert().Accept();
+            driver.FindElement(By.CssSelector("div.msgbox"));
             return this;
         }
 
