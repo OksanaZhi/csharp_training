@@ -7,6 +7,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
+using System.Text.RegularExpressions;
+using NUnit.Framework;
 
 namespace WebAddressbookTests
 {
@@ -27,6 +29,29 @@ namespace WebAddressbookTests
             Logout();
             return this;
         }
+
+        // public ContactHelper Modify(int v, ContactData newData)
+        //  {
+        //     manager.Navigator.GoToHomePage();
+        //     SelectContact(v);
+        //     InitContactModification();
+        //     FillContactForm(newData);
+        //     SubmitContactModification();
+
+        //     return this;
+        // }
+
+        //new
+        public ContactHelper Remove(int p)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContact(p);
+            RemoveContact();
+            SubmitContactRemove();
+            return this;
+
+        }
+
 
         public ContactHelper InitNewContactCreation()
         {
@@ -97,5 +122,29 @@ namespace WebAddressbookTests
             return this;
         }
 
+        // new
+        public ContactHelper SelectContact(int index)
+        {
+            
+            driver.FindElement(By.Id("logo")).Click();
+            driver.FindElement(By.Id("1")).Click();
+            //driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
+            return this;
+        }
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            return this;
+        }
+
+        public ContactHelper SubmitContactRemove()
+        {
+            
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        
     }
 }
