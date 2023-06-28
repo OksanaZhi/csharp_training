@@ -14,7 +14,8 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
-        
+        private bool acceptNextAlert;
+
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
             
@@ -128,23 +129,25 @@ namespace WebAddressbookTests
             
             driver.FindElement(By.Id("logo")).Click();
             driver.FindElement(By.Id("1")).Click();
-            //driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
+            
             return this;
         }
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             return this;
         }
 
         public ContactHelper SubmitContactRemove()
         {
-            
+
             driver.SwitchTo().Alert().Accept();
             return this;
         }
 
         
+
+
     }
 }
