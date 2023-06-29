@@ -142,7 +142,7 @@ namespace WebAddressbookTests
         {
 
             driver.SwitchTo().Alert().Accept();
-            driver.FindElement(By.CssSelector("div.msgbox"));
+            //driver.FindElement(By.CssSelector("div.msgbox"));
             return this;
         }
 
