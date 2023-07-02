@@ -129,10 +129,12 @@ namespace WebAddressbookTests
         // new
         public ContactHelper SelectContact(int index)
         {
-            
-            driver.FindElement(By.Id("logo")).Click();
-            driver.FindElement(By.Id("2")).Click();
-            
+
+            //driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
+            driver.FindElement(By.XPath("div[@id='index']")).Click();
+            //driver.FindElement(By.Id("logo")).Click();
+            //driver.FindElement(By.Id("2")).Click();
+
             return this;
         }
         public ContactHelper RemoveContact()
