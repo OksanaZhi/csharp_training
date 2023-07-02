@@ -19,7 +19,7 @@ namespace WebAddressbookTests
             newData.Lastname = "Petrov";
             newData.Middlename = "Petrovich";
             
-            app.Contacts.Modify(2, newData);
+            app.Contacts.Modify(1, newData);
 
         }
     }
