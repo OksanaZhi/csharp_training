@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactRemovalTests : TestBase
+    public class ContactRemovalTests : AuthTestBase
     {
         
 
