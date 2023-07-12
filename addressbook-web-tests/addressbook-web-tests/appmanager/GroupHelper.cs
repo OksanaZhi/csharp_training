@@ -32,8 +32,9 @@ namespace WebAddressbookTests
 
         public GroupHelper Modify(int v, GroupData newData)
         {
-                       
+            //prepare           
             manager.Navigator.GoToGroupsPage();
+            
             //validation
             if (IsElementPresent(By.Name("selected"))) 
             {
