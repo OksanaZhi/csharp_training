@@ -14,6 +14,15 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
+            if (!app.Groups.GroupExists()) //  //группа не существует
+            {
+                GroupData group = new GroupData("");
+                group.Header = "";
+                group.Footer = "";
+
+                app.Groups.Create(group);
+            }
+
             app.Groups.Remove(1);
             
         }

@@ -17,6 +17,14 @@ namespace WebAddressbookTests
             [Test]
             public void ContactRemovalTest()
             {
+                if (!app.Contacts.ContactExists()) //  контакт не существует
+                {
+                    ContactData contact = new ContactData("Ivan");
+                    contact.Lastname = "Ivanov";
+                    contact.Middlename = "Ivanovich";
+                    app.Contacts.Create(contact);
+                }
+
                 app.Contacts.Remove(1);
 
             }

@@ -143,7 +143,13 @@ namespace WebAddressbookTests
             return this;
         }
 
-       
+        //new
+
+        //1
+        public bool ContactExists()
+        {
+            return IsElementPresent(By.Name("selected[]"));
+        }
 
     }
 }

@@ -32,21 +32,15 @@ namespace WebAddressbookTests
 
         public GroupHelper Modify(int v, GroupData newData)
         {
-            //prepare           
+            
             manager.Navigator.GoToGroupsPage();
-            
-            //validation
-            if (IsElementPresent(By.Name("selected"))) 
-            {
-                SelectGroup(v);
-                InitGroupModification();
-                FillGroupForm(newData);
-                SubmitGroupModification();
-                ReturnToGroupsPage();
-                return this;
-            }
-
-            
+            SelectGroup(v);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+                     
 
         }
 
@@ -112,6 +106,16 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
+
+        //2
+       
+        public bool GroupExists()
+        {
+            return IsElementPresent(By.Name("selected[]"));
+        }
+
+
+
 
     }
 }
