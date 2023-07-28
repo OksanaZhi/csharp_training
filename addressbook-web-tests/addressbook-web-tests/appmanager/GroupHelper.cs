@@ -79,8 +79,7 @@ namespace WebAddressbookTests
         public GroupHelper ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();
-            driver.FindElement(By.LinkText("Logout")).Click();
-            driver.FindElement(By.XPath("//img[@alt='Address book']")).Click();
+            
             return this;
         }
         public GroupHelper SelectGroup(int index)
@@ -107,15 +106,25 @@ namespace WebAddressbookTests
             return this;
         }
 
-        //2
+        //задание 8??
        
         public bool GroupExists()
         {
             return IsElementPresent(By.Name("selected[]"));
         }
 
+        //
 
-
-
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>() ;
+            manager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement>elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+            }
+            return groups;
+        }
     }
 }
