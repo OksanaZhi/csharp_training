@@ -26,7 +26,7 @@ namespace WebAddressbookTests
             FillContactForm(contact);
             SubmitContactCreation();
             ReturnToHomePage();
-            Logout();
+            
             return this;
         }
 
@@ -148,6 +148,7 @@ namespace WebAddressbookTests
         //1
         public bool ContactExists()
         {
+            manager.Navigator.GoToHomePage();
             return IsElementPresent(By.Name("selected[]"));
         }
 

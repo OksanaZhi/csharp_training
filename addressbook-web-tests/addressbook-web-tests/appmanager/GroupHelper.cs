@@ -110,6 +110,7 @@ namespace WebAddressbookTests
        
         public bool GroupExists()
         {
+            manager.Navigator.GoToGroupsPage();
             return IsElementPresent(By.Name("selected[]"));
         }
 
