@@ -15,6 +15,8 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
+
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
             //new
             if (!app.Contacts.ContactExists()) //  контакт не существует
             {
@@ -30,8 +32,14 @@ namespace WebAddressbookTests
             newData.Lastname = "Alexeev";
             newData.Middlename = "Alexeevich";
             
-            app.Contacts.Modify(1, newData);
+            app.Contacts.Modify(0, newData);
 
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts[0].Lastname = newData.Lastname;
+            oldContacts[0].Firstname = newData.Firstname;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

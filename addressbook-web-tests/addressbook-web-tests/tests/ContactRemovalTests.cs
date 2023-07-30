@@ -17,7 +17,9 @@ namespace WebAddressbookTests
             [Test]
             public void ContactRemovalTest()
             {
-                if (!app.Contacts.ContactExists()) //  контакт не существует
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+
+                 if (!app.Contacts.ContactExists()) //  контакт не существует
                 {
                     ContactData contact = new ContactData("Ivan");
                     contact.Lastname = "Ivanov";
@@ -25,8 +27,13 @@ namespace WebAddressbookTests
                     app.Contacts.Create(contact);
                 }
 
-                app.Contacts.Remove(1);
+                app.Contacts.Remove(0);
 
-            }
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.RemoveAt(0);
+            Assert.AreEqual(oldContacts, newContacts);
+
+
+        }
         }
 }

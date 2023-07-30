@@ -106,7 +106,7 @@ namespace WebAddressbookTests
         public ContactHelper SelectContact(int index)
         {
 
-            driver.FindElement(By.XPath("//tr[" + (index + 1) + "]//input")).Click();
+            driver.FindElement(By.XPath("//tr[" + index+1+1 + "]//input")).Click();
             
 
             return this;
@@ -143,13 +143,24 @@ namespace WebAddressbookTests
             return this;
         }
 
-        //new
-
-        //1
+        
+        
         public bool ContactExists()
         {
             manager.Navigator.GoToHomePage();
             return IsElementPresent(By.Name("selected[]"));
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
         }
 
     }
