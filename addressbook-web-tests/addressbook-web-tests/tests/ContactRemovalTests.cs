@@ -33,8 +33,15 @@ namespace WebAddressbookTests
 
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
+
+            ContactData toBeRemoved = oldContacts[0];
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (ContactData contact in newContacts) 
+            {
+                Assert.AreNotEqual(contact.Id, oldContacts[0].Id);
+            }
 
 
         }

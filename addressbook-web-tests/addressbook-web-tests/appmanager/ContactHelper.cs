@@ -155,6 +155,7 @@ namespace WebAddressbookTests
         }
 
         private List<ContactData> contactCashe = null;
+        
 
         public List<ContactData> GetContactList()
         {
@@ -162,10 +163,15 @@ namespace WebAddressbookTests
             {
                 contactCashe = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
-                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
-                foreach (IWebElement element in elements)
+                //ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                foreach (IWebElement element in cells)
                 {
-                    contactCashe.Add(new ContactData(element.Text));
+                                                           
+                    contactCashe.Add(new ContactData(element.Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
             }
             
