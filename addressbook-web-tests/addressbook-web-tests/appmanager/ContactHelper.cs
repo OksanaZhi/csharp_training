@@ -50,6 +50,7 @@ namespace WebAddressbookTests
             SelectContact(p);
             RemoveContact();
             SubmitContactRemove();
+            contactCashe = null;
 
             return this;
 
@@ -88,6 +89,7 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+            contactCashe = null;
             return this;    
         }
         public ContactHelper ReturnToHomePage()
@@ -114,7 +116,7 @@ namespace WebAddressbookTests
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            
+            contactCashe = null;
             return this;
         }
 
@@ -140,6 +142,7 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            contactCashe = null;
             return this;
         }
 
@@ -151,17 +154,27 @@ namespace WebAddressbookTests
             return IsElementPresent(By.Name("selected[]"));
         }
 
+        private List<ContactData> contactCashe = null;
+
         public List<ContactData> GetContactList()
         {
-            List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
-            foreach (IWebElement element in elements)
+            if (contactCashe == null)
             {
-                contacts.Add(new ContactData(element.Text));
+                contactCashe = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+                foreach (IWebElement element in elements)
+                {
+                    contactCashe.Add(new ContactData(element.Text));
+                }
             }
-            return contacts;
+            
+            return new List<ContactData> (contactCashe);
         }
 
+        public int GetContactCount()
+        {
+            return driver.FindElements(By.CssSelector("tr")).Count;
+        }
     }
 }
