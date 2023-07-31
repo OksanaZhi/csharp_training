@@ -8,24 +8,24 @@ namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string firstname;
-        private string middlename = "";
-        private string lastname;
-        private string nickname = "";
-        private string title = "";
-        private string company = "";
-        private string address = "";
-        private string home = "";
-        private string mobile = "";
-        private string work = "";
-        private string fax = "";
-        private string email = "";
-        private string email2 = "";
-        private string email3 = "";
-        private string homepage = "";
-        private string address2 = "";
-        private string phone2 = "";
-        private string notes = "";
+        public string firstname;
+        public string middlename = "";
+        public string lastname;
+        public string nickname = "";
+        public string title = "";
+        public string company = "";
+        public string address = "";
+        public string home = "";
+        public string mobile = "";
+        public string work = "";
+        public string fax = "";
+        public string email = "";
+        public string email2 = "";
+        public string email3 = "";
+        public string homepage = "";
+        public string address2 = "";
+        public string phone2 = "";
+        public string notes = "";
 
         public ContactData(string firstname)
         { 
