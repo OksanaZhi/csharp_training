@@ -25,11 +25,17 @@ namespace WebAddressbookTests
         public string address2 = "";
         public string phone2 = "";
         public string notes = "";
+        public string allPhones;
 
         public ContactData(string firstname)
         { 
             Firstname = firstname;
         }
+
+        public ContactData(string firstname, string lastName) : this(firstname)
+        {
+        }
+
         public string Firstname { get; set; }
         
 
@@ -61,11 +67,11 @@ namespace WebAddressbookTests
         
         public string Address { get; set; }
         
-        public string Home { get; set; }
+        public string HomePhone { get; set; }
         
-        public string Mobile { get; set; }
+        public string MobilePhone { get; set; }
         
-        public string Work { get; set; }
+        public string WorkPhone { get; set; }
         
         public string Fax { get; set; }
         
@@ -104,7 +110,34 @@ namespace WebAddressbookTests
         }
 
         public string Id { get; set; }
+        public string AllPhones
+        {
+            get
+            {
+                if (allPhones != null)
+                {
+                    return allPhones;
 
+                }
+                else
+                {
+                    return CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone).Trim();
+                }
+            }
+            set 
+            {
+                allPhones = value;
+            }
+        }
+
+        private string CleanUp(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return phone.Replace(" ","").Replace("-","").Replace("(", "").Replace(")","") +"\r\n";
+        }
     }
 
 }
