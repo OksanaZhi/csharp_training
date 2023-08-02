@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using NUnit.Framework;
 using System.Reflection;
 
+
 namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
@@ -236,7 +237,15 @@ namespace WebAddressbookTests
 
             };
 
-           
+           }
+
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.GoToHomePage();
+            string text = driver.FindElement(By.TagName("label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
         }
+
     }
 }
