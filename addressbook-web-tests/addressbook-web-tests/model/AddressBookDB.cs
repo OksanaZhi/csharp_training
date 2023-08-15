@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using LinqToDB;
+using NUnit.Framework;
 
 namespace WebAddressbookTests
 {
@@ -17,6 +18,8 @@ namespace WebAddressbookTests
 
         public ITable<ContactData> Contacts { get { return GetTable<ContactData>(); } }
 
-       
+        public ITable<GroupContactRelation> GCR { get { return GetTable<GroupContactRelation>(); } }
+
+
     }
 }
